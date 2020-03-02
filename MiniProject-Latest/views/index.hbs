@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Edwards FYP</title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <style>
+  table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+  <body>
+    <h1>Final Year Project</h1>
+    <section class="get">
+
+
+          <table style="width:100%">
+          <h3>Location</h3>
+          <tr>
+            <th>Time</th>
+            <th>RSSi 1</th>
+            <th>RSSi 2</th>
+            <th>RSSi 3</th>
+          </tr>
+            {{# each items }}
+                <article class="item">
+
+                  <tr>
+                    <td>{{this.Time}}</td>
+                    <td>{{this.RSSI1}}</td>
+                    <td>{{this.RSSI2}}</td>
+                    <td>{{this.RSSI3}}</td>
+                  </tr>
+
+                </article>
+            {{/each}}
+            </table>
+
+    </section>
+    <section class="get">
+      <canvas id="myCanvas" width="300" height="300"
+style="border:3px solid #000000;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script>
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.font = "10px Arial";
+ctx.fillText("RSSI1 Location", 0, 10);
+ctx.fillText("RSSI2 Location", 0, canvas.height);
+ctx.fillText("RSSI3 Location", 220, 10);
+ctx.fillStyle = "red";
+ctx.fillRect(20,30,5,10);
+
+
+
+// drawTank(20,30,50,100);
+//
+// function drawTank(width, height, x, y){
+//   this.width = width;
+//   this.height = height;
+//   this.x = x;
+//   this.y = y;
+//   squarectx = canvas.context;
+//   squarectx.fillStyle = "red";
+//   squarectx.fillRect(this.x, this.y, this.width, this.height);
+// }
+
+</script>
+    </section>
+</body>
+</html>
