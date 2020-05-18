@@ -1,0 +1,534 @@
+<!-- <!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Edwards FYP</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 5px;
+      text-align: left;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .flex-container>div {
+      background-color: #f1f1f1;
+      width: 33%;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Final Year Project</h1>
+
+
+  <div class="flex-container">
+    <div>
+      <table style="width:100%">
+        <h3>Location</h3>
+        <tr>
+          <th>Time</th>
+          <th>RSSi 1</th>
+          <th>RSSi 2</th>
+          <th>RSSi 3</th>
+        </tr>
+        {{# each items }}
+
+
+          <tr>
+            <td>{{this.Time}}</td>
+            <td>{{this.RSSI1}}</td>
+            <td>{{this.RSSI2}}</td>
+            <td>{{this.RSSI3}}</td>
+          </tr>
+
+
+          {{/each}}
+      </table>
+    </div>
+    <div>
+      <h3> Map Of Current Route</h3>
+      <canvas id="myCanvas" width="350" height="350" style="border:3px solid #000000;">
+        Your browser does not support the canvas element.
+      </canvas>
+      <div id="id"></div>
+
+      <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var r1 = 40;
+        var r2 = 40;
+        var r3 = 60;
+        var coordinates = intersection(0, 0, r1, 0, 70, r2);
+        var x1 = coordinates[1] * 5;
+        var y1 = coordinates[2] * 5;
+        coordinates = intersection(0, 0, r1, 70, 0, r3);
+        var x2 = coordinates[1] * 5;
+        var y2 = coordinates[2] * 5;
+        var r1less10 = false;
+        var r2less10 = false;
+        var x = (x1 + x2) / 2;
+        var y = (y1 + y2) / 2;
+
+        image = new Image();
+        image.src = 'images/tank.png';
+
+        ctx.fillText("RSSI1 Location", 0, 10);
+        ctx.fillText("RSSI2 Location", 0, canvas.height);
+        ctx.fillText("RSSI3 Location", 270, 10);
+        // ctx.fillRect(x, y, 5, 10);
+        var RSSI;
+        //
+        setInterval(function() {
+          clear();
+          ctx.font = "10px Arial";
+          ctx.fillText("RSSI1 Location", 0, 10);
+          ctx.fillText("RSSI2 Location", 0, canvas.height);
+          ctx.fillText("RSSI3 Location", 270, 10);
+          //ctx.fillRect(x, y, 5, 10);
+          ctx.drawImage(image,x,y,20,30);
+        }, 1000);
+
+        setInterval(function() {
+          var xhttp = new XMLHttpRequest();
+
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var RSSIData = JSON.parse(this.responseText);
+              coordinates = intersection(0, 0, (RSSIData.RSSI1 * -1), 0, 70, (RSSIData.RSSI2 * -1));
+              x1 = coordinates[1] * 5;
+              y1 = coordinates[2] * 5;
+              coordinates = intersection(0, 0, (RSSIData.RSSI1 * -1), 70, 0, (RSSIData.RSSI3 * -1));
+              x2 = coordinates[1] * 5;
+              y2 = coordinates[2] * 5;
+              x = (x1 + x2) / 2;
+              y = (y1 + y2) / 2;
+
+
+            }
+
+          };
+          xhttp.open("get", "/Data", true);
+          xhttp.setRequestHeader("content-type", "application/json");
+          xhttp.send();
+        },2000);
+
+
+
+        // if (r1less10<h3> Map Of Current Route</h3>
+      <canvas id="myCanvas" width="350" height="350" style="border:3px solid #000000;">
+        Your browser does not support the canvas element.
+      </canvas>) {<h3> Map Of Current Route</h3>
+      <canvas id="myCanvas" width="350" height="350" style="border:3px solid #000000;">
+        Your browser does not support the canvas element.
+      </canvas>
+        //   r1 = r1 + 5;
+        //   if (r1 >= 70) {
+        //     r1less10 = false;
+        //   }
+        // } else {
+        //   r1 = r1 - 5;
+        //   if (r1 <= 10) {
+        //     r1less10 = true;
+        //   }
+      plus  // }
+        //
+        // if (r2less10) {
+        //   r2 = r2 - 5;
+        //   if (r2 <= 10) {
+        //     r2less10 = false;
+        //   }
+        // } else {
+        //   r2 = r2 + 5;
+        //   if (r2 >= 70) {
+        //     r2less10 = true;
+        //   }
+        // }
+
+        //document.getElementById("id").innerHTML = "" + x + " " + y;
+        // coordinates = intersection(0, 0, r1, 0, 70, r2);
+        // x1 = coordinates[1] * 5;
+        // y1 = coordinates[2] * 5;
+        // coordinates = intersection(0, 0, r1, 70, 0, r3);
+        // x2 = coordinates[1] * 5;
+        // y2 = coordinates[2] * 5;
+        // x = (x1 + x2) /2;
+        // y = (y1 + y2) /2;
+
+
+<h3> Map Of Current Route</h3>
+      <canvas id="myCanvas" width="350" height="350" style="border:3px solid #000000;">
+        Your browser does not support the canvas element.
+      </canvas>
+
+        // //      ctx.font = "10px Arial";
+        // //      ctx.fillText("RSSI1 Location", 0, 10);
+        // //      ctx.fillText("RSSI2 Location", 0, canvas.height);
+        // //      ctx.fillText("RSSI3 Location", 270, 10);
+        // //
+        function clear() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // //
+        function intersection(x0, y0, r0, x1, y1, r1) {
+          var a, dx, dy, d, h, rx, ry;
+          var x2, y2;
+
+          /* dx and dy are the vertical and horizontal distances between
+           * the circle centers.
+           */
+          dx = x1 - x0;
+          dy = y1 - y0;
+
+          /* Determine the straight-line distance between the centers. */
+          d = Math.sqrt((dy * dy) + (dx * dx));
+
+          /* Check for solvability. */
+          if (d > (r0 + r1)) {
+            /* no solution. circles do not intersect. */
+            return false;<h3> Map Of Current Route</h3>
+      <canvas id="myCanvas" width="350" height="350" style="border:3px solid #000000;">
+        Your browser does not support the canvas element.
+      </canvas>
+          }
+          if (d < Math.abs(r0 - r1)) {
+            /* no solution. one circle is contained in the other */
+            return false;
+          }
+
+          /* 'point 2' is the point where the line through the circle
+           * intersection points crosses the line between the circle
+           * centers.
+           */
+
+          /* Determine the distance from point 0 to point 2. */
+          a = ((r0 * r0) - (r1 * r1) + (d * d)) / (2.0 * d);
+
+          /* Determine the coordinates of point 2. */
+          x2 = x0 + (dx * a / d);
+          y2 = y0 + (dy * a / d);
+
+          /* Determine the distance from point 2 to either of the
+           * intersection points.
+           */
+          h = Math.sqrt((r0 * r0) - (a * a));
+
+          /* Now determine the offsets of the intersection points from
+           * point 2.
+           */
+          rx = -dy * (h / d);
+          ry = dx * (h / d);
+
+          /* Determine the absolute intersection points. */
+          var xi = x2 + rx;
+          var xi_prime = x2 - rx;
+          var yi = y2 + ry;
+          var yi_prime = y2 - ry;
+
+          return [xi, xi_prime, yi, yi_prime];
+        }
+      </script>
+    </div>
+    <div>
+      <form action='/Drive' method="get">
+        <button type="submit" class="btn">Drive Mode</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html>
+<title>Edwards FYP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 5px;
+    text-align: left;
+  }
+
+  tr {
+    height: 15px;
+  }
+
+  .icon-bar {
+    width: 100%;
+    height: 99px;
+    background-color: #555;
+    overflow: auto;
+    text-align: center;
+    position: fixed;
+    top: 0;
+
+  }
+
+  .icon-bar a {
+    float: left;
+    width: 25%;
+    height: 99px;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+  }
+
+
+  .icon-bar a:hover {
+    background-color: #4CAF50;
+  }
+
+  .icon-bar span {
+      display:block;
+      font-size: 50%
+
+  }
+  .footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: #555;
+     color: white;
+     text-align: center;
+  }
+
+  .footer p{
+    text-align: left;
+  }
+
+</style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<body>
+
+
+
+
+  <div class="icon-bar">
+    <a href="/login"><i class="fa fa-home"></i><span>Home</span></a>
+    <a href="/Drive"><i class="fa fa-car"></i><span>Drive</span></a>
+    <a onclick="myFunction()" href="/AddRoute"><i class="fa fa-plus"></i><span>Add Route</span></a>
+    <a href="/CurrentRoute"><i class="fa fa-crosshairs"></i><span>Current Route</span></a>
+
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <div class="w3-row-padding w3-center w3-margin-top">
+    <div class="w3-third" style="width:50%">
+      <div class="w3-card w3-container" style="min-height:600px">
+        <table style="width:90%; font-size: 15px; height:70%; " align="center">
+          <h3>Location</h3>
+          <tr>
+            <th>Time</th>
+            <th>RSSi 1</th>
+            <th>RSSi 2</th>
+            <th>RSSi 3</th>
+          </tr>
+          {{# each items }}
+
+
+            <tr>
+              <td>{{this.Time}}</td>
+              <td>{{this.RSSI1}}</td>
+              <td>{{this.RSSI2}}</td>
+              <td>{{this.RSSI3}}</td>
+            </tr>
+
+
+            {{/each}}
+        </table>
+
+      </div>
+    </div>
+
+
+    <div class="w3-third" style="width:50%">
+      <div class="w3-card w3-container" style="min-height:600px; ">
+        <h3> Map Of Current Route</h3>
+        <canvas id="myCanvas" width="350" height="350" style="border:3px solid #000000;">
+          Your browser does not support the canvas element.
+        </canvas>
+        <div id="id11">hello</div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/edwardmartinswelecgmit/">Edward Martin</a></p>
+    </div>
+
+    <script>
+    
+      var can = document.getElementById('myCanvas');
+      can.height = 350;
+      can.width = 350;
+      var ctx = can.getContext('2d');
+      var x , y;
+      var time = 1000;
+      var intersection13, intersection12;
+      var isSize = false;
+      var size = 0;
+      draw();
+      setInterval(function () {
+        clear();
+        if(time == (1000)*(size)){
+          time = 0;
+        }else {
+            time = time + 1000;
+        }
+
+         		 draw();
+
+      		}, 1000);
+
+      function myFunction() {
+        var txt;
+        var routeName = prompt("Please enter route name:", "Shed 1");
+        if (routeName == null || routeName == "") {
+          txt = "User cancelled the prompt.";
+        } else {
+          xhttp.open("POST", "/Name", true);
+          xhttp.setRequestHeader("content-type", "application/json");
+          txt.name = routeName;
+          xhttp.send(JSON.stringify(txt));
+        }
+      }
+
+      function draw() {
+        {{#each items}}
+          if(time == {{this.Time}}){
+            intersection12 = intersection(0,0,((-1)*({{this.RSSI1}})),0,70,((-1)*({{this.RSSI2}})));
+            intersection13 = intersection(0,0,((-1)*({{this.RSSI1}})),70,0,((-1)*({{this.RSSI3}})));
+          }
+          if(isSize == false){
+            size++;
+          }
+        {{/each}}
+        isSize = true;
+        x =  (intersection12[0] + intersection13[0])/2;
+        y =  (intersection12[2] + intersection13[2])/2;
+
+        if(x < 0){ x=x * -5; }else{ x=x * 5; }
+        if(y < 0){ y=y * -5; }else{ y=y * 5; }
+
+
+        ctx.fillRect(x,y,20,20);
+        document.getElementById("id11").innerHTML = x + " " + y;
+      }
+      function clear(){
+
+        ctx.clearRect(0,0,350,350);
+      }
+
+
+      function showDeleteForm() {
+        var x = document.getElementById("deleteForm");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+
+      function showAddForm() {
+        var x = document.getElementById("addForm");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+
+      function intersection(x0, y0, r0, x1, y1, r1) {
+        var a, dx, dy, d, h, rx, ry;
+        var x2, y2;
+
+        /* dx and dy are the vertical and horizontal distances between
+         * the circle centers.
+         */
+        dx = x1 - x0;
+        dy = y1 - y0;
+
+        /* Determine the straight-line distance between the centers. */
+        d = Math.sqrt((dy * dy) + (dx * dx));
+
+        /* Check for solvability. */
+        if (d > (r0 + r1)) {
+          /* no solution. circles do not intersect. */
+          return false;
+        }
+        if (d < Math.abs(r0 - r1)) {
+          /* no solution. one circle is contained in the other */
+          return false;
+        }
+
+        /* 'point 2' is the point where the line through the circle
+         * intersection points crosses the line between the circle
+         * centers.
+         */
+
+        /* Determine the distance from point 0 to point 2. */
+        a = ((r0 * r0) - (r1 * r1) + (d * d)) / (2.0 * d);
+
+        /* Determine the coordinates of point 2. */
+        x2 = x0 + (dx * a / d);
+        y2 = y0 + (dy * a / d);
+
+        /* Determine the distance from point 2 to either of the
+         * intersection points.
+         */
+        h = Math.sqrt((r0 * r0) - (a * a));
+
+        /* Now determine the offsets of the intersection points from
+         * point 2.
+         */
+        rx = -dy * (h / d);
+        ry = dx * (h / d);
+
+        /* Determine the absolute intersection points. */
+        var xi = x2 + rx;
+        var xi_prime = x2 - rx;
+        var yi = y2 + ry;
+        var yi_prime = y2 - ry;
+
+        return [xi, xi_prime, yi, yi_prime];
+      }
+    </script>
+</body>
+
+</html>

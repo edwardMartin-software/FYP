@@ -1,0 +1,264 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Edwards FYP</title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;
+    }
+    tr {
+      height:15px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .flex-container > div {
+      background-color: #f1f1f1;
+      width: 33%;
+      margin: 10px;
+      text-align: center;
+
+      line-height: 75px;
+      font-size: 30px;
+    }
+    .flex-container > div > form {
+      background-color: #f1f1f1;
+      width: 33%;
+      margin: 10px;
+      text-align: center;
+      font-size: 15px;
+    }
+    .flex-container > div > form > input {
+      background-color: #ffffff;
+      height: 15px;
+      text-align: center;
+      font-size: 15px;
+    }
+    </style>
+  </head>
+
+  <body>
+
+        <div class="flex-container">
+          <div>
+          <table style="width:90%; font-size: 15px; height:70%; " align="center" >
+          <h3>Users</h3>
+          <tr>
+            <th>User</th>
+            <th>Password</th>
+
+
+          </tr>
+            {{# each items }}
+                <tr id="Row">
+                    <td>{{this.User}}</td>
+                    <td>{{this.Password}}</td>
+
+
+                  </tr>
+            {{/each}}
+            </table>
+          </div>
+
+  <section class="insert">
+    <button class="w3-bar-item w3-button w3-green" onclick="showAddForm()">Add User</button>
+    <form action="/insert" method="post" style="display:none" id="addForm">
+      <div class ="input">
+        <label for="Username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" id="username" name="username" required>
+      </div>
+      <div class ="input">
+        <label for="psw"><b>Password</b></label>
+        <input type="text" placeholder="Enter Password" id="psw" name="psw" required>
+      </div>
+      <button type="submit" class="btn">Save User</button>
+    </form>
+  </section>
+  <section class="delete">
+    <button class="w3-bar-item w3-button w3-red" onclick="showDeleteForm()">Delete User</button>
+    <form action="/delete" method="post" id="deleteForm" style="display:none">
+      <div class ="input">
+        <label for="User1"><b>User1</b></label>
+        <input type="text" placeholder="Enter Username" id="deleteUser1" name="User1" required>
+      </div>
+      <button type="submit" class="btn">Delete</button>
+    </form>
+  </section>
+
+        <script>
+
+        function showDeleteForm(){
+          var x = document.getElementById("deleteForm");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+          function showAddForm(){
+            var x = document.getElementById("addForm");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } else {
+              x.style.display = "block";
+            }
+          }
+
+          </script>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<title>{{title}}</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+text-align: left;
+}
+tr {
+height:15px;
+}
+.icon-bar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.icon-bar a {
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar a:hover {
+  background-color: #4CAF50;
+}
+
+
+</style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<body>
+
+
+
+
+<div class="icon-bar">
+ <a href="/"><i class="fa fa-home"></i></a>
+
+</div>
+
+
+
+<div class="w3-row-padding w3-center w3-margin-top">
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:600px">
+    <table style="width:90%; font-size: 15px; height:70%; " align="center" >
+    <h3>Users</h3>
+    <tr>
+      <th>User</th>
+      <th>Password</th>
+
+
+    </tr>
+      {{# each items }}
+          <tr id="Row">
+              <td>{{this.User}}</td>
+              <td>{{this.Password}}</td>
+
+
+            </tr>
+      {{/each}}
+      </table>
+
+  </div>
+</div>
+
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:600px">
+    <br><br>
+    <button class="w3-bar-item w3-button w3-green" onclick="showAddForm()">Add User</button>
+    <form action="/insert" method="post" style="display:none" id="addForm">
+      <br>
+      <div class ="input">
+        <label style="color:Green" for="Username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" id="username" name="username" required>
+      </div>
+      <br>
+      <div class ="input">
+        <label style="color:Green" for="psw"><b>Password</b></label>
+        <input type="text" placeholder="Enter Password" id="psw" name="psw" required>
+      </div>
+      <br>
+      <button  type="submit" class="btn">Save User</button>
+    </form>
+<body>
+	<div id="chartContainer" style="height: 300px; width: 100%;">
+	</div>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:600px">
+    <br><br>
+    <button class="w3-bar-item w3-button w3-red" onclick="showDeleteForm()">Delete User</button>
+    <form action="/delete" method="post" id="deleteForm" style="display:none">
+      <div class ="input">
+        <br>
+        <label style="color:Red" for="User1"><b>User</b></label>
+        <input type="text" placeholder="Enter Username" id="deleteUser1" name="User1" required>
+      </div>
+      <br>
+      <button  type="submit" class="btn">Delete</button>
+    </form>
+  </div>
+
+  <script>
+
+  function showDeleteForm(){
+    var x = document.getElementById("deleteForm");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+    function showAddForm(){
+      var x = document.getElementById("addForm");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+
+    </script>
+
+</body>
+</html>

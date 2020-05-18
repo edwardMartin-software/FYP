@@ -1,0 +1,223 @@
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .slidecontainer {
+    width: 100%;
+  }
+
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+  .parent {
+    display: flex;
+    width: 100%;
+  }
+
+  .child {
+    width: 50%;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .icon-bar {
+    width: 100%;
+    height: 99px;
+    background-color: #555;
+    overflow: auto;
+    text-align: center;
+    position: fixed;
+    top: 0;
+
+  }
+
+  .icon-bar a {
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+  }
+
+  .icon-bar a:hover {
+    background-color: #4CAF50;
+  }
+
+  .icon-bar span {
+    display: block;
+    font-size: 50%
+  }
+
+  .icon-bar i {
+    height: 37px;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #555;
+    color: white;
+    text-align: center;
+  }
+
+  .footer p {
+    text-align: left;
+  }
+</style>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<body>
+  <div class="icon-bar">
+    <a href="/login"><i class="fa fa-home"></i><span>Home</span></a>
+    <a href="/Drive"><i class="fa fa-car"></i><span>Drive</span></a>
+    <a onclick="myFunction()" href="/AddRoute"><i class="fa fa-plus"></i><span>Add Route</span></a>
+    <a href="/CurrentRoute"><i class="fa fa-crosshairs"></i><span>Current Route</span></a>
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="slidecontainer">
+    <div class="slidecontainer">
+      <h2 align="center">Drive</h2>
+      <input type="range" min="-10" max="10" value="0" class="slider" id="driveSlider">
+      <div class="parent">
+        <div class="child" align="left">
+          Reverse
+        </div>
+        <div class="child" align="right">
+          Forward
+        </div>
+      </div>
+      <p>Value: <span id="driveValue"></span></p>
+    </div>
+    <br>
+    <br>
+    <div class="slidecontainer">
+      <h2 align="center">Turn</h2>
+      <input type="range" min="-10" max="10" value="0" class="slider" id="turnSlider">
+      <div class="parent">
+        <div class="child" align="left">
+          Left
+        </div>
+        <div class="child" align="right">
+          Right
+        </div>
+      </div>
+      <p>Value: <span id="turnValue"></span></p>
+    </div>
+    <a href="/Stop"><button>Stop</button></a>
+    <br><br>
+    <br><br>
+    <br><br>
+  </div>
+  <div class="footer">
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/edwardmartinswelecgmit/">Edward Martin</a></p>
+  </div>
+
+  <script>
+    var driveSlider = document.getElementById("driveSlider");
+    var driveValue = document.getElementById("driveValue");
+    var turnSlider = document.getElementById("turnSlider");
+    var turnValue = document.getElementById("turnValue");
+    driveValue.innerHTML = driveSlider.value;
+    turnValue.innerHTML = turnSlider.value;
+
+    driveSlider.onchange = function() {
+      driveSlider.value = 0;
+      driveValue.innerHTML = 0;
+      sendValues(0, 0);
+
+    }
+    driveSlider.oninput = function() {
+      driveValue.innerHTML = this.value;
+      sendValues(this.value, turnSlider.value);
+
+    }
+    turnSlider.onchange = function() {
+      turnSlider.value = 0;
+      turnValue.innerHTML = 0;
+      sendValues(0, 0);
+
+    }
+    turnSlider.oninput = function() {
+      turnValue.innerHTML = this.value;
+      sendValues(driveSlider.value, this.value);
+    }
+    function myFunction() {
+      var txt;
+      var routeName = prompt("Please enter route name:", "Shed 1");
+      if (routeName == null || routeName == "") {
+        txt = "User cancelled the prompt.";
+      } else {
+        xhttp.open("POST", "/Name", true);
+        xhttp.setRequestHeader("content-type", "application/json");
+        txt.name = routeName;
+        xhttp.send(JSON.stringify(txt));
+      }
+    }
+
+    function sendValues(drive, turn) {
+
+      var values = {
+        driveSpeed: 0,
+        turnSpeed: 1
+      }
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+        }
+      };
+      xhttp.open("POST", "/SendControl", true);
+      xhttp.setRequestHeader("content-type", "application/json");
+      values.driveSpeed = drive;
+      values.turnSpeed = turn;
+      xhttp.send(JSON.stringify(values));
+    }
+  </script>
+</body>
+
+</html>
